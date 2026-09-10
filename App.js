@@ -1,20 +1,25 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import Login from './src/screens/login';
+import Cadastro from './src/screens/cadastro';
+import Agendamento from './src/screens/agendamento';
 
 export default function App() {
+  // Define a tela inicial. Opções: 'login', 'cadastro', 'agendamento'
+  const [telaAtual, setTelaAtual] = useState('login');
+
+  if (telaAtual === 'cadastro') {
+    return <Cadastro onNavigateToLogin={() => setTelaAtual('login')} />;
+  }
+
+  if (telaAtual === 'agendamento') {
+    return <Agendamento onLogout={() => setTelaAtual('login')} />;
+  }
+
+  // Por padrão, exibe a tela de Login
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Login 
+      onLoginSuccess={() => setTelaAtual('agendamento')} 
+      onNavigateToCadastro={() => setTelaAtual('cadastro')} 
+    />
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
