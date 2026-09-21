@@ -1,28 +1,25 @@
 import React, { useState } from 'react';
-import Cardapio from './src/screens/cardapio';
-import Login from './src/screens/login';
-import Cadastro from './src/screens/cadastro';
+import Cardapio from './src/screens/cardapio.js';
+import Login from './src/screens/login.js';
+import Cadastro from './src/screens/cadastro.js';
 
 export default function App() {
-  const [telaAtual, setTelaAtual] = useState('cardapio'); // Inicia direto no Cardápio
+  const [telaAtual, setTelaAtual] = useState('cardapio');
   const [isLogado, setIsLogado] = useState(false);
   const [usuario, setUsuario] = useState(null);
 
-  // Ao realizar login com sucesso
   const handleLoginSuccess = (dadosUsuario) => {
     setIsLogado(true);
     setUsuario(dadosUsuario || { nome: 'Cliente' });
-    setTelaAtual('cardapio'); // Volta para o cardápio/carrinho para finalizar
+    setTelaAtual('cardapio');
   };
 
-  // Ao realizar cadastro com sucesso
   const handleCadastroSuccess = (dadosUsuario) => {
     setIsLogado(true);
     setUsuario(dadosUsuario || { nome: 'Cliente' });
-    setTelaAtual('cardapio'); // Volta para o cardápio/carrinho para finalizar
+    setTelaAtual('cardapio');
   };
 
-  // Logout
   const handleLogout = () => {
     setIsLogado(false);
     setUsuario(null);
